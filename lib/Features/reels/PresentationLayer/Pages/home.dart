@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tiktok_ui_clone/bloc/LikeButtonCubit/likeButton..dart';
-import 'package:tiktok_ui_clone/bloc/home_bloc/home_bloc.dart';
-import 'package:tiktok_ui_clone/components/animated_music_box.dart';
-import 'package:tiktok_ui_clone/components/video_item.dart';
+import 'package:tiktok_ui_clone/Features/reels/PresentationLayer/BLoC/LikeButtonCubit/likeButton..dart';
+import 'package:tiktok_ui_clone/Features/reels/PresentationLayer/BLoC/home_bloc/home_bloc.dart';
+import 'package:tiktok_ui_clone/Features/reels/PresentationLayer/Widgets/animated_music_box.dart';
+import 'package:tiktok_ui_clone/Features/reels/PresentationLayer/Widgets/video_item.dart';
 import 'package:tiktok_ui_clone/constants.dart';
-import 'package:tiktok_ui_clone/data/videoData/video_data.dart';
+import 'package:tiktok_ui_clone/Features/reels/DataLayer/Datasources/Local_Mock/video_data.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
                   fit: StackFit.expand,
                   children: [
                     //Actual video
-                    VideoItem(url: state.videos[index].url),
+                    VideoItem(url: state.videos[index].url.toString()),
                     SafeArea(
                       child: Align(
                         alignment: Alignment.topCenter,
@@ -94,17 +94,26 @@ class _HomeState extends State<Home> {
                           _buildIcon(
                             BlocBuilder<LikeButtonCubit, bool>(
                               builder: (context, state) {
-                                return Icon(
-                                  CupertinoIcons.heart_fill,
-                                  color: state ? Colors.red : feedIconColor,
-                                  size: 45.0,
-                                );
+                                if (state == true && index == 0) {
+                                  return Icon(
+                                    CupertinoIcons.heart_fill,
+                                    color: Colors.red,
+                                    size: 45.0,
+                                  );
+                                }
+                                else{
+                                  return Icon(
+                                    CupertinoIcons.heart,
+                                    color: feedIconColor,
+                                    size: 45.0,
+                                  );
+                                }
                               },
                             ),
-                            videoData[index].likes,
+                            state.videos[index].likes.toString(),
                             onTap:
                                 () => {
-                                context.read<LikeButtonCubit>().toggleLike()
+                                context.read<LikeButtonCubit>().toggleLike(index)
                                   //Logic to be added
                                 },
                           ),
@@ -115,7 +124,7 @@ class _HomeState extends State<Home> {
                               color: feedIconColor,
                               size: 45.0,
                             ),
-                            state.videos[index].comments,
+                            state.videos[index].comments.toString(),
                           ),
                           const SizedBox(height: 20.0),
                           _buildIcon(
@@ -124,13 +133,13 @@ class _HomeState extends State<Home> {
                               size: 45.0,
                               color: feedIconColor,
                             ),
-                            state.videos[index].favoriteLength,
+                            state.videos[index].favoriteLength.toString(),
                           ),
 
                           const SizedBox(height: 20.0),
                           _buildIcon(
                             Icon(Icons.share, color: feedIconColor, size: 45.0),
-                            state.videos[index].shares,
+                            state.videos[index].shares.toString(),
                           ),
 
                           const SizedBox(height: 25.0),
@@ -143,7 +152,7 @@ class _HomeState extends State<Home> {
                       bottom: MediaQuery.sizeOf(context).height * 0.1,
                       left: 15.0,
                       child: Text(
-                        videoData[index].description,
+                        videoData[index].description.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18.0,

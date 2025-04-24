@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tiktok_ui_clone/data/videoData/videoRepository/videoRepository.dart';
-import 'package:tiktok_ui_clone/models/video_model.dart';
+import 'package:tiktok_ui_clone/Features/reels/DataLayer/Repository/videos.dart';
+import 'package:tiktok_ui_clone/Features/reels/DataLayer/Models/video_model.dart';
 import 'package:equatable/equatable.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final VideoRepository videoRepository;
+  final videosRepositoryImpl videoRepository;
   HomeBloc(this.videoRepository) : super(HomeInitial()) {
     on<HomeVideoLoadEvent>((event, Emitter<HomeState> emit) => _loadVideos(event, emit));
   }

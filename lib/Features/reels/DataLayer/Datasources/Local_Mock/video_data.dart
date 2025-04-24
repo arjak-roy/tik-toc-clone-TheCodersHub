@@ -1,4 +1,4 @@
-import 'package:tiktok_ui_clone/models/video_model.dart';
+import 'package:tiktok_ui_clone/Features/reels/DataLayer/Models/video_model.dart';
 
 final List<VideoModel> videoData = [
   VideoModel(
@@ -7,7 +7,7 @@ final List<VideoModel> videoData = [
     likes: "43.0K",
     comments: "3000",
     favoriteLength: "8000",
-    shares: "10K",
+    shares: "10K", isLiked: false,
   ),
   VideoModel(
     url: 'assets/2.mp4',
@@ -15,7 +15,7 @@ final List<VideoModel> videoData = [
     likes: "50.5K",
     comments: "11K",
     favoriteLength: "10K",
-    shares: "12K",
+    shares: "12K", isLiked: false,
   ),
   VideoModel(
     url: 'assets/3.mp4',
@@ -23,7 +23,7 @@ final List<VideoModel> videoData = [
     likes: "100.0K",
     comments: "20K",
     favoriteLength: "25K",
-    shares: "22K",
+    shares: "22K", isLiked: false,
   ),
   VideoModel(
     url: 'assets/4.mp4',
@@ -31,7 +31,7 @@ final List<VideoModel> videoData = [
     likes: "1.1.M",
     comments: "100K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
   VideoModel(
     url: 'https://videos.pexels.com/video-files/856787/856787-sd_640_360_30fps.mp4',
@@ -39,7 +39,8 @@ final List<VideoModel> videoData = [
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
+    
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/855289/855289-hd_1920_1080_25fps.mp4',
@@ -47,7 +48,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/7565442/7565442-hd_1080_1920_25fps.mp4',
@@ -55,7 +56,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/5877829/5877829-hd_1080_1920_30fps.mp4',
@@ -63,7 +64,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/13764245/13764245-uhd_1440_2560_30fps.mp4',
@@ -71,7 +72,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/856787/856787-sd_640_360_30fps.mp4',
@@ -79,7 +80,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 VideoModel(
     url: 'https://videos.pexels.com/video-files/856787/856787-sd_640_360_30fps.mp4',
@@ -87,7 +88,7 @@ VideoModel(
     likes: "1.55.M",
     comments: "500K",
     favoriteLength: "50K",
-    shares: "40K",
+    shares: "40K", isLiked: false,
   ),
 
 ];
