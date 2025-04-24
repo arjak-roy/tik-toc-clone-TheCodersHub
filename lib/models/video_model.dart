@@ -5,7 +5,7 @@ class VideoModel {
   final String comments;
   final String favoriteLength;
   final String shares;
-   bool isLiked;
+  bool isLiked;
 
   VideoModel({
     required this.url,
@@ -16,4 +16,5 @@ class VideoModel {
     required this.shares,
     this.isLiked = false,
   });
+
 }
