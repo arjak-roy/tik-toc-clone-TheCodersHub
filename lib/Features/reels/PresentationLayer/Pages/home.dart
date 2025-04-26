@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -44,41 +45,19 @@ class _HomeState extends State<Home> {
           if (state is HomeVideoLoadErrorState) {
             return Center(child: Text(state.message));
           } else if (state is HomeVideoLoadSucessState) {
-            return PageView.builder(
+            return Stack(
+              children: [
+              PageView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.videos.length,
               itemBuilder: (context, index) {
                 return Stack(
+                  key: Key(index.toString()),
                   fit: StackFit.expand,
                   children: [
                     //Actual video
                     VideoItem(url: state.videos[index].url.toString()),
-                    SafeArea(
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Following",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                            const SizedBox(width: 20.0),
-                            Text(
-                              'For You',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontSize: 18.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+
 
                     Padding(
                       padding: EdgeInsets.only(
@@ -92,28 +71,18 @@ class _HomeState extends State<Home> {
                           _buildProfileAvatar(),
                           const SizedBox(height: 30.0),
                           _buildIcon(
-                            BlocBuilder<LikeButtonCubit, bool>(
-                              builder: (context, state) {
-                                if (state == true && index == 0) {
-                                  return Icon(
-                                    CupertinoIcons.heart_fill,
-                                    color: Colors.red,
-                                    size: 45.0,
-                                  );
-                                }
-                                else{
-                                  return Icon(
-                                    CupertinoIcons.heart,
-                                    color: feedIconColor,
-                                    size: 45.0,
-                                  );
-                                }
-                              },
-                            ),
+                                Icon(
+                                  CupertinoIcons.heart_circle_fill,
+                                  color: (state.videos[index].isLiked)? Color.fromARGB(179, 255, 0, 0): feedIconColor,
+                                  size: 45.0,
+
+                                ),
                             state.videos[index].likes.toString(),
                             onTap:
                                 () => {
-                                context.read<LikeButtonCubit>().toggleLike(index)
+                                  context.read<HomeBloc>().add(
+                                    HomeVideoLikeEvent(index),
+                                  ),
                                   //Logic to be added
                                 },
                           ),
@@ -164,9 +133,48 @@ class _HomeState extends State<Home> {
                   ],
                 );
               },
+            ),
+                    Positioned(
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Following",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                            const SizedBox(width: 20.0),
+                            Text(
+                              'For You',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+
+              ],
+            );
+          } else if (state is HomeVideoLoadErrorState) {
+            //error state
+            return Container(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              child: Text("Error"),
             );
           } else {
-            return Container(color: const Color.fromARGB(255, 255, 255, 255));
+            //unknown state
+            return Container(
+              color: const Color.fromARGB(255, 255, 255, 255),
+              child: Text("Something went wrong"),
+            );
           }
         },
       ),

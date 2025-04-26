@@ -20,7 +20,6 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => HomeBloc(context.read<videosRepositoryImpl>()),
           ),
-          BlocProvider(create: (context) => LikeButtonCubit(context.read<videosRepositoryImpl>())),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -36,6 +36,11 @@ class HomeVideoLoadingState extends HomeState {
 }
 
 
+class HomelikedButton extends HomeState {
+  @override
+  List<Object?> get props => [];
+}
+
 class HomeNotlikedButton extends HomeState {
   @override
   List<Object?> get props => [];

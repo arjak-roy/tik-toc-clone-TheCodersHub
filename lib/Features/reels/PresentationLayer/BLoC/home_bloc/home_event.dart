@@ -13,3 +13,8 @@ class HomeVideoLoadEvent extends HomeEvent {}
 class HomeVideoLoadSucess extends HomeEvent {}
 
 class HomeVideoLoadError extends HomeEvent {}
+
+class HomeVideoLikeEvent extends HomeEvent {
+  final int index;
+  HomeVideoLikeEvent(this.index);
+}
